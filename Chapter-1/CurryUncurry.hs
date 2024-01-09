@@ -1,4 +1,4 @@
-module CurryUncurry where
+module Chapter1.CurryUncurry where
 
 curry' f = \a b -> f (a, b)
 

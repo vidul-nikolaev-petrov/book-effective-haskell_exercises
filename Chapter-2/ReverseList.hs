@@ -1,4 +1,4 @@
-import Data.Char
+module Chapter2.ReverseList where
 
 reverseListL :: [a] -> [a]
 reverseListL = foldl (flip (:)) []

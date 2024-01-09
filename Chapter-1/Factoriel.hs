@@ -1,4 +1,4 @@
-module Factoriel where
+module Chapter1.Factoriel where
 
 factoriel n
   | n == 1 = 1
