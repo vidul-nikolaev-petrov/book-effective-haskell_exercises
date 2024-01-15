@@ -18,7 +18,7 @@ zipWithC' f as bs = [f a b | a <- as | b <- bs]
 zipWithF' :: (t1 -> t2 -> a) -> [t1] -> [t2] -> [a]
 zipWithF' _ [] _ = []
 zipWithF' _ _ [] = []
-zipWithF' f as bs = reverse $ foldl (\acc a -> f (fst a) (snd a) : acc) [] $ zip as bs
+zipWithF' f as bs = reverse $ foldl (\acc a -> uncurry f a : acc) [] $ zip as bs
 
 main :: IO ()
 main = do
