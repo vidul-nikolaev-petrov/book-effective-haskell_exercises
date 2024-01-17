@@ -7,6 +7,7 @@ mapApply toApply =
 example :: [Int] -> String
 example = mapApply compose
   where
+    compose :: [Int -> Char]
     compose = map (lookupLetter .) offsets
 
     letters :: [Char]
