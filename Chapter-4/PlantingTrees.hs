@@ -25,7 +25,11 @@ sampleBinaryTree =
             ( Branch
                 (Branch Leaf "Branch-10" Leaf)
                 "Branch-7"
-                (Branch Leaf "Branch-11" Leaf)
+                ( Branch
+                    (Branch Leaf "Branch-12" Leaf)
+                    "Branch-11"
+                    (Branch Leaf "Branch-13" Leaf)
+                )
             )
         )
 
@@ -46,7 +50,9 @@ showStringTree (Branch leftBranch a rightBranch) =
             <> repeat' ident
             <> "Left: "
             <> showStringTree' lb ident
-            <> repeat' ident
+            <> case rb of
+                Leaf -> repeat' (ident - ident) <> ", "
+                _ -> repeat' ident
             <> "Right: "
             <> showStringTree' rb ident
             <> case rb of
