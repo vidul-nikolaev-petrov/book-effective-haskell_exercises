@@ -49,7 +49,9 @@ showStringTree (Branch leftBranch a rightBranch) =
             <> repeat' ident
             <> "Right: "
             <> showStringTree' rb ident
-            <> "\n"
+            <> case rb of
+                Leaf -> "\n"
+                _ -> ""
 
     repeat' :: Int -> String
     repeat' n = take n $ repeat ' '
