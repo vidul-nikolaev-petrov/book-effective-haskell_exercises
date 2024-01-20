@@ -97,6 +97,14 @@ addElementToIntTree t@(Branch left a right) n
     | n > a = Branch left a (addElementToIntTree right n)
     | otherwise = t
 
+-- Check to see if an int value exists in a binary tree of ints
+doesIntExist :: BinaryTree Int -> Int -> Bool
+doesIntExist Leaf _ = False
+doesIntExist (Branch left a right) n
+    | n > a = doesIntExist right n
+    | n < a = doesIntExist left n
+    | otherwise = True
+
 toStringTree :: (Show a) => BinaryTree a -> BinaryTree String
 toStringTree Leaf = Leaf
 toStringTree (Branch left a right) =
@@ -105,3 +113,5 @@ toStringTree (Branch left a right) =
 main = do
     putStrLn $ showStringTree stringBinaryTree
     putStrLn . showStringTree . toStringTree $ addElementToIntTree intBinaryTree 6
+    print $ doesIntExist intBinaryTree 5
+    print $ doesIntExist intBinaryTree 6
