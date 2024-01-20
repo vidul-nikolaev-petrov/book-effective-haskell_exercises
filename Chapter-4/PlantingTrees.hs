@@ -2,8 +2,8 @@ module Chapter4.PlantingTrees where
 
 data BinaryTree a = Leaf | Branch (BinaryTree a) a (BinaryTree a)
 
-sampleBinaryTree :: BinaryTree String
-sampleBinaryTree =
+stringBinaryTree :: BinaryTree String
+stringBinaryTree =
     Branch
         ( Branch
             ( Branch
@@ -33,15 +33,42 @@ sampleBinaryTree =
             )
         )
 
+intBinaryTree :: BinaryTree Int
+intBinaryTree =
+    Branch
+        ( Branch
+            ( Branch
+                Leaf
+                2
+                Leaf
+            )
+            3
+            ( Branch
+                Leaf
+                4
+                Leaf
+            )
+        )
+        5
+        ( Branch
+            Leaf
+            7
+            ( Branch
+                Leaf
+                8
+                Leaf
+            )
+        )
+
 -- Turn a binary tree of strings into a pretty-printed string
 showStringTree :: BinaryTree String -> String
-showStringTree (Branch leftBranch a rightBranch) =
-    showStringTree' (Branch leftBranch a rightBranch) 0
+showStringTree (Branch left a right) =
+    showStringTree' (Branch left a right) 0
   where
     showStringTree' :: BinaryTree String -> Int -> String
     showStringTree' Leaf _ = "Leaf"
-    showStringTree' (Branch leftBranch a rightBranch) ident =
-        prettyPrint a leftBranch rightBranch (succ $ succ ident)
+    showStringTree' (Branch left a right) ident =
+        prettyPrint a left right (succ $ succ ident)
 
     prettyPrint :: String -> BinaryTree String -> BinaryTree String -> Int -> String
     prettyPrint branchValue lb rb ident =
@@ -60,7 +87,21 @@ showStringTree (Branch leftBranch a rightBranch) =
                 _ -> ""
 
     repeat' :: Int -> String
-    repeat' n = take n $ repeat ' '
+    repeat' = flip replicate ' '
+
+-- Add a new integer into a binary tree of integers
+addElementToIntTree :: BinaryTree Int -> Int -> BinaryTree Int
+addElementToIntTree Leaf n = Branch Leaf n Leaf
+addElementToIntTree t@(Branch left a right) n
+    | n < a = Branch (addElementToIntTree left n) a right
+    | n > a = Branch left a (addElementToIntTree right n)
+    | otherwise = t
+
+toStringTree :: (Show a) => BinaryTree a -> BinaryTree String
+toStringTree Leaf = Leaf
+toStringTree (Branch left a right) =
+    Branch (toStringTree left) (show a) (toStringTree right)
 
 main = do
-    putStrLn $ showStringTree sampleBinaryTree
+    putStrLn $ showStringTree stringBinaryTree
+    putStrLn . showStringTree . toStringTree $ addElementToIntTree intBinaryTree 6
