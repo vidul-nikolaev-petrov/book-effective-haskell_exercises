@@ -1,4 +1,4 @@
-module Chapter1.Fibonacci where
+module Fibonacci where
 
 fibs n
   | n == 0 = 0

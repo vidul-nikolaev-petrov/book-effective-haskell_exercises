@@ -1,4 +1,4 @@
-module Chapter3.FillingInTypeHoles where
+module FillingInTypeHoles where
 
 mapApply :: [a -> b] -> [a] -> [b]
 mapApply toApply =

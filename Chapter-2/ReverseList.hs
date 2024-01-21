@@ -1,4 +1,4 @@
-module Chapter2.ReverseList where
+module ReverseList where
 
 reverseListL :: [a] -> [a]
 reverseListL = foldl (flip (:)) []

@@ -1,4 +1,4 @@
-module Chapter3.FunctionsByType where
+module FunctionsByType where
 
 -- Data.Tuple.swap :: (a,b) -> (b,a)
 -- my expectation:

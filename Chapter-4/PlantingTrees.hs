@@ -1,4 +1,4 @@
-module Chapter4.PlantingTrees where
+module PlantingTrees where
 
 data BinaryTree a = Leaf | Branch (BinaryTree a) a (BinaryTree a)
 

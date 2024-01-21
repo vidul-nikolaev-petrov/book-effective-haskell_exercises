@@ -1,6 +1,6 @@
 {-# LANGUAGE ParallelListComp #-}
 
-module Chapter2.ZipWith where
+module ZipWith where
 
 -- pure version
 zipWith' :: (t1 -> t2 -> a) -> [t1] -> [t2] -> [a]
