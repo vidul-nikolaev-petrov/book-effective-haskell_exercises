@@ -20,6 +20,7 @@ prettyPrint' expr =
                 )
          in brackets result
 
+    brackets :: String -> String
     brackets s = "( " <> s <> " )"
 
 prettyPrint :: Expr -> String
