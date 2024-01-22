@@ -28,7 +28,7 @@ prettyPrint expr =
     let
         evalString = either . safeEval $ expr
         prettyString = prettyPrint' expr
-        -- my naive desicion, see the proper on here:
+        -- my naive desicion, see the proper one here:
         -- https://effective-haskell.com/solutions/chapter4/calculator-pretty-printer.html
         prettyString' = tail . init $ prettyString
      in
