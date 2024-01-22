@@ -28,8 +28,8 @@ prettyPrint expr =
     let
         evalString = either . safeEval $ expr
         prettyString = prettyPrint' expr
-        -- my naive desicion, see the proper one here:
-        -- https://effective-haskell.com/solutions/chapter4/calculator-pretty-printer.html
+        -- my naive solution, see the proper one here:
+        -- https://shorturl.at/dlCUV
         prettyString' = tail . init $ prettyString
      in
         prettyString' <> " = " <> evalString
