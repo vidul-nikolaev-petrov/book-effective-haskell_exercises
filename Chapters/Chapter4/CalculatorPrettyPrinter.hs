@@ -1,6 +1,6 @@
 module CalculatorPrettyPrinter where
 
-import EvalDivisionbyZero (Expr (Add, Div, Lit, Mul, Sub), safeEval)
+import EvalDivisionbyZero (Expr (..), safeEval)
 
 prettyPrint' :: Expr -> String
 prettyPrint' expr =

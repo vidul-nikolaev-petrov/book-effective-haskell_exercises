@@ -1,4 +1,4 @@
-module CurryUncurry where
+module Chapter1.CurryUncurry where
 
 curry' f = \a b -> f (a, b)
 
@@ -8,6 +8,6 @@ uncurry' f = \t -> f (fst t) (snd t)
 
 uncurried = uncurry' (*)
 
-main = do
-  print $ curried 2 3
-  print $ uncurried (2, 3)
+-- main = do
+--   print $ curried 2 3
+--   print $ uncurried (2, 3)
