@@ -52,9 +52,11 @@ library
     -- Modules exported by the library.
     exposed-modules:
             MyLib
+        ,   Chapter1.Index
         ,   Chapter1.CurryUncurry
         ,   Chapter1.Factoriel
         ,   Chapter1.Fibonacci
+        ,   Chapter2.Index
         ,   Chapter2.ConcatMap
         ,   Chapter2.ReverseList
         ,   Chapter2.ZipWith
@@ -107,6 +109,10 @@ test-suite effective-haskell-test
 
     -- The entrypoint to the test suite.
     main-is:          MainTest.hs
+    
+    -- Additional tests' files.
+    other-modules:
+            Chapter1
 
     -- Test dependencies.
     build-depends:

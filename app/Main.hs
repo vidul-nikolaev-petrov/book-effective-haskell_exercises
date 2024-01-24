@@ -1,8 +1,8 @@
 module Main where
 
-import qualified Chapter1.CurryUncurry as C1_CurryUncurry
-import qualified Chapter1.Factoriel as C1_Factoriel
-import qualified Chapter1.Fibonacci as C1_Fibonacci
+import qualified Chapter1.Index as C1
+
+-- import qualified Chapter2.Index as C2
 
 (#) :: (Show a) => String -> a -> IO ()
 (#) label a = print $ (label <> ": " <> show a)
@@ -19,8 +19,10 @@ printChapter n = putStrLn $ title <> underline
 main :: IO ()
 main = do
   printChapter 1
-  "curried 2 3" # C1_CurryUncurry.curried 2 3
-  "uncurried (2, 3)" # C1_CurryUncurry.uncurried (2, 3)
-  "factoriel 5" # C1_Factoriel.factoriel 5
-  "fibonacci 10" # C1_Fibonacci.fibs 10
-  putStrLn "\nChapter 2"
+  "curried 2 3" # C1.curried 2 3
+  "uncurried (2, 3)" # C1.uncurried (2, 3)
+  "factoriel 5" # C1.factoriel 5
+  "fibonacci 10" # C1.fibs 10
+  printChapter 2
+
+-- print $ concatMap' (* 10) [[1, 2], [3, 4], [5, 6, 7, 8]]
