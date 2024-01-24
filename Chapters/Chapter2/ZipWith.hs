@@ -1,6 +1,6 @@
 {-# LANGUAGE ParallelListComp #-}
 
-module ZipWith where
+module Chapter2.ZipWith where
 
 -- pure version
 zipWith' :: (t1 -> t2 -> a) -> [t1] -> [t2] -> [a]
@@ -20,8 +20,7 @@ zipWithF' _ [] _ = []
 zipWithF' _ _ [] = []
 zipWithF' f as bs = reverse $ foldl (\acc a -> uncurry f a : acc) [] $ zip as bs
 
-main :: IO ()
-main = do
-    print $ zipWith' (*) [1 .. 3] [10, 10, 10]
-    print $ zipWithC' (*) [1 .. 3] [10, 10, 10]
-    print $ zipWithF' (*) [1 .. 3] [10, 10, 10]
+-- main = do
+--     print $ zipWith' (*) [1 .. 3] [10, 10, 10]
+--     print $ zipWithC' (*) [1 .. 3] [10, 10, 10]
+--     print $ zipWithF' (*) [1 .. 3] [10, 10, 10]

@@ -55,6 +55,9 @@ library
         ,   Chapter1.CurryUncurry
         ,   Chapter1.Factoriel
         ,   Chapter1.Fibonacci
+        ,   Chapter2.ConcatMap
+        ,   Chapter2.ReverseList
+        ,   Chapter2.ZipWith
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -103,7 +106,10 @@ test-suite effective-haskell-test
     hs-source-dirs:   test
 
     -- The entrypoint to the test suite.
-    main-is:          MyLibTest.hs
+    main-is:          MainTest.hs
 
     -- Test dependencies.
-    build-depends:    base ^>=4.17.2.0
+    build-depends:
+            base ^>=4.17.2.0
+        ,   effective-haskell == 0.1.0.0
+        ,   hspec >= 2.11.7
