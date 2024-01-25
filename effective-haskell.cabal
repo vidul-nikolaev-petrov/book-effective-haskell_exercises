@@ -60,6 +60,12 @@ library
         ,   Chapter2.ReverseList
         ,   Chapter2.ZipWith
 
+        ,   Chapter5.Index
+        ,   Chapter5.UserAuth
+        ,   Chapter5.UserInfo
+        ,   Chapter5.User
+        ,   Chapter5.Users
+
     -- Modules included in this library but not exported.
     -- other-modules:
 
