@@ -12,3 +12,9 @@ Start the interactive environment:
 ```
 cabal repl
 ```
+
+Generate documentation:
+
+```
+cabal haddock --haddock-hyperlink-source
+```

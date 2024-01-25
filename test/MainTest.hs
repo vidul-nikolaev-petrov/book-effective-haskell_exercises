@@ -5,5 +5,5 @@ import Test.Hspec
 
 main :: IO ()
 main = hspec $ do
-    describe "Chapter 1" $ do
+    describe "Effective Haskell" $ do
         Chapter1.test
