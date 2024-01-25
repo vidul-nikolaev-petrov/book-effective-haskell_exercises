@@ -30,7 +30,7 @@ main = do
   "concatMap' (* 10) [[1, 2], [3, 4]]" # C2.concatMap' (* 10) [[1, 2], [3, 4]]
   "reverseListL [1 .. 3]" # C2.reverseListL [1 .. 3]
   "reverseListR [1 .. 3]" # C2.reverseListR [1 .. 3]
-  "zipWith' (*) [1 .. 3] [10, 10, 10]" # C2.zipWith' (*) [1 .. 3] [10, 10, 10]
+  "zipWith'  (*) [1 .. 3] [10, 10, 10]" # C2.zipWith' (*) [1 .. 3] [10, 10, 10]
   "zipWithC' (*) [1 .. 3] [10, 10, 10]" # C2.zipWithC' (*) [1 .. 3] [10, 10, 10]
   "zipWithF' (*) [1 .. 3] [10, 10, 10]" # C2.zipWithF' (*) [1 .. 3] [10, 10, 10]
 
