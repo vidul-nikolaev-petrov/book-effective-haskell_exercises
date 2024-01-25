@@ -61,7 +61,7 @@ library
         ,   Chapter2.ZipWith
 
         ,   Chapter5.Index
-        ,   Chapter5.UserAuth
+        ,   Chapter5.Auth
         ,   Chapter5.UserInfo
         ,   Chapter5.User
         ,   Chapter5.Users

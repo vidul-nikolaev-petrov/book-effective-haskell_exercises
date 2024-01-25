@@ -3,11 +3,11 @@ module Chapter5.Users (
     lookupUserBool,
 ) where
 
-import Chapter5.User (User (..))
-import Chapter5.UserAuth (
+import Chapter5.Auth (
     Authenticated,
     Unauthenticated,
  )
+import Chapter5.User (User (..))
 import Data.List (find)
 
 users :: [User a]

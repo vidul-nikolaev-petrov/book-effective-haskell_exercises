@@ -19,8 +19,3 @@ zipWithF' :: (t1 -> t2 -> a) -> [t1] -> [t2] -> [a]
 zipWithF' _ [] _ = []
 zipWithF' _ _ [] = []
 zipWithF' f as bs = reverse $ foldl (\acc a -> uncurry f a : acc) [] $ zip as bs
-
--- main = do
---     print $ zipWith' (*) [1 .. 3] [10, 10, 10]
---     print $ zipWithC' (*) [1 .. 3] [10, 10, 10]
---     print $ zipWithF' (*) [1 .. 3] [10, 10, 10]

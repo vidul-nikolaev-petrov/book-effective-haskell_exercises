@@ -1,10 +1,10 @@
 module Chapter5.UserInfo where
 
-import Chapter5.User (User (..))
-import Chapter5.UserAuth (
+import Chapter5.Auth (
     Authenticated,
     Unauthenticated,
  )
+import Chapter5.User (User (..))
 
 getUserName :: User isAuthenticated -> String
 getUserName = userName
