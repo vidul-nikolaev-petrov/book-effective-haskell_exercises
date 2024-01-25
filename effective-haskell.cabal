@@ -118,6 +118,7 @@ test-suite effective-haskell-test
     -- Additional tests' files.
     other-modules:
             Chapter1
+            Chapter2
 
     -- Test dependencies.
     build-depends:

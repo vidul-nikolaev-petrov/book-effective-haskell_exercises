@@ -6,9 +6,9 @@ import Test.Hspec
 test :: Spec
 test =
     describe "Chapter 1" $ do
-        it "curried " $ do
+        it "curried" $ do
             C1.curried 2 3 `shouldBe` 6
-        it "uncurried " $ do
+        it "uncurried" $ do
             C1.uncurried (2, 3) `shouldBe` 6
         it "factoriel" $ do
             C1.factoriel 5 `shouldBe` 120
