@@ -66,6 +66,9 @@ library
         ,   Chapter5.User
         ,   Chapter5.Users
 
+        ,   Chapter6.Index
+        ,   Chapter6.Nullable
+
     -- Modules included in this library but not exported.
     -- other-modules:
 

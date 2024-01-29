@@ -3,6 +3,7 @@ module Main where
 import qualified Chapter1.Index as C1
 import qualified Chapter2.Index as C2
 import qualified Chapter5.Index as C5
+import qualified Chapter6.Index as C6
 
 infixr 7 #
 (#) :: (Show a) => String -> a -> IO ()
