@@ -2,52 +2,36 @@
 
 module Chapter6.Nullable where
 
+import Text.Read (Lexeme (String))
 import Prelude hiding (null)
 
-class Nullable a where
-    isNull :: a -> Bool
+class (Eq a) => Nullable a where
     null :: a
 
-instance Nullable (Maybe a) where
-    isNull :: Maybe a -> Bool
-    isNull Nothing = True
-    isNull _ = False
+    isNull :: a -> Bool
+    isNull a = a == null
 
-    null :: Maybe a
+instance (Eq a) => Nullable (Maybe a) where
+    null :: (Eq a) => Maybe a
     null = Nothing
 
 instance (Nullable a, Nullable b) => Nullable (a, b) where
-    isNull :: (Nullable a, Nullable b) => (a, b) -> Bool
-    isNull (a, b) = isNull a && isNull b
-
     null :: (a, b)
     null = (null, null)
 
-instance Nullable [a] where
-    isNull :: [a] -> Bool
-    isNull [] = True
-    isNull _ = False
-
+instance (Eq a) => Nullable [a] where
     null :: [a]
     null = []
 
-nullMaybe :: Maybe String
-nullMaybe = null
-
-nullTuple :: (String, String)
-nullTuple = null
-
-nullList :: [Int]
-nullList = null
-
 main :: IO ()
 main = do
+    let nothing = Nothing :: Maybe Int
+    let nullList = [] :: [Int]
+    let nullTuple = (Nothing, []) :: (Maybe Int, [Int])
+
     print $ isNull (Just 1)
-    print $ isNull Nothing
-    print $ isNull ("a", [])
-    print $ isNull (Nothing, [])
+    print $ isNull nothing
+    print $ isNull ("", Just 1)
+    print $ isNull nullTuple
     print $ isNull [1 ..]
-    print $ isNull []
-    print nullMaybe
-    print nullList
-    print nullTuple
+    print $ isNull nullList
