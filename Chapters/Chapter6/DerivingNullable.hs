@@ -43,13 +43,12 @@ instance Nullable TransitiveNullable where
     null :: TransitiveNullable
     null = TransitiveNullable Nothing
 
-main = do
-    let basicNullable = BasicNullable (Just "")
-    let basicNullable2 = BasicNullable (Just "abc")
-    let transitiveNullable = TransitiveNullable (Just "")
-    let transitiveNullable2 = TransitiveNullable (Just "abc")
+parseNullable :: (Nullable a) => (Maybe String -> a) -> String -> Bool
+parseNullable cons s = isNull $ cons (Just s)
 
-    print $ isNull basicNullable
-    print $ isNull basicNullable2
-    print $ isNull transitiveNullable
-    print $ isNull transitiveNullable2
+main :: IO ()
+main = do
+    print $ parseNullable BasicNullable ""
+    print $ parseNullable BasicNullable "abc"
+    print $ parseNullable TransitiveNullable ""
+    print $ parseNullable TransitiveNullable "abc"
