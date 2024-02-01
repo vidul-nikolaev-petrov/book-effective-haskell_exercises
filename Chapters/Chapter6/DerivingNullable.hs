@@ -46,9 +46,15 @@ instance Nullable TransitiveNullable where
 parseNullable :: (Nullable a) => (Maybe String -> a) -> String -> Bool
 parseNullable cons s = isNull $ cons (Just s)
 
+optionalString :: String -> Bool
+optionalString = parseNullable BasicNullable
+
+optionalNonEmptyString :: String -> Bool
+optionalNonEmptyString = parseNullable TransitiveNullable
+
 main :: IO ()
 main = do
-    print $ parseNullable BasicNullable ""
-    print $ parseNullable BasicNullable "abc"
-    print $ parseNullable TransitiveNullable ""
-    print $ parseNullable TransitiveNullable "abc"
+    print $ optionalString ""
+    print $ optionalString "abc"
+    print $ optionalNonEmptyString ""
+    print $ optionalNonEmptyString "abc"
