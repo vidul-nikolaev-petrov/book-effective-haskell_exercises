@@ -16,9 +16,12 @@ sumArgs = do
 
 calculateArgs :: IO ()
 calculateArgs = do
-    (op : nums) <- getArgs
-    let maybeInts = map readMaybe nums
-        func = case op of
+    args <- getArgs
+    case args of
+        [] -> return ()
+        _ -> putStr "Result: "
+    let maybeInts = map readMaybe $ tail args
+        func = case head args of
             "+" -> sum
             "*" -> product
             "-" -> foldr (-) 0
