@@ -67,7 +67,12 @@ library
         ,   Chapter5.Users
 
         ,   Chapter6.Index
+        ,   Chapter6.Peano
         ,   Chapter6.Nullable
+
+        ,   Chapter7.Index
+        ,   Chapter7.CommandLineCalculator
+        ,   Chapter7.NestedIOActions
 
     -- Modules included in this library but not exported.
     -- other-modules:
