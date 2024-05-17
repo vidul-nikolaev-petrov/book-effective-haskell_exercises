@@ -44,3 +44,4 @@ main = do
   "command line calculator +" # "runghc Chapters/Chapter7/CommandLineCalculator.hs + 1 2 3"
   "command line calculator -" # "runghc Chapters/Chapter7/CommandLineCalculator.hs - 33 2 1"
   "command line calculator *" # "see the comments in Chapters/Chapter7/CommandLineCalculator.hs"
+  "word replacement utility " # "see the comments in Chapters/Chapter7/WordReplacement.hs"

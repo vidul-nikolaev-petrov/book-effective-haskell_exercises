@@ -1,0 +1,6 @@
+WordReplacement
+
+When a user runs your program, you should print out the contents of the file at path,
+but replace all occurrences of needle with replacement in the output. To make things easier,
+assume that you can use the words function and do not need to worry about handling multiple spaces
+or words that span lines. Or worry if you want to...
