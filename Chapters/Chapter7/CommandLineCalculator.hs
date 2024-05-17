@@ -1,30 +1,44 @@
 module Chapter7.CommandLineCalculator where
 
-import Data.Foldable (Foldable (fold))
-import Data.Maybe (catMaybes)
-import System.Environment (getArgs, withArgs)
+import Data.Maybe (mapMaybe)
+import System.Environment (getArgs)
 import Text.Read (readMaybe)
 
-printArgs :: IO ()
-printArgs = getArgs >>= print
+main :: IO ()
+main = do
+    putStr "Result: "
+    calculateArgs
 
 sumArgs :: IO ()
 sumArgs = do
     args <- getArgs
-    let maybeInts = map readMaybe args
-    print . sum . catMaybes $ maybeInts
+    print . sum $ mapMaybe parseArg args
 
 calculateArgs :: IO ()
 calculateArgs = do
     args <- getArgs
-    case args of
-        [] -> return ()
-        _ -> putStr "Result: "
-    let maybeInts = map readMaybe $ tail args
-        func = case head args of
+    print $ calculateArgs' args
+
+calculateArgs' :: [String] -> Int
+calculateArgs' (command : args) =
+    let args' = mapMaybe parseArg args
+        op = case command of
             "+" -> sum
             "*" -> product
-            "-" -> foldr (-) 0
-            "/" -> foldr div 1
+            "-" -> minus
             _ -> const 0
-    print . func . catMaybes $ maybeInts
+     in op args'
+
+minus :: (Num a) => [a] -> a
+minus [x] = x
+minus [x, y] = x - y
+minus (x : y : xs) = foldl (-) (x - y) xs
+
+parseArg :: String -> Maybe Int
+parseArg = readMaybe
+
+{-
+runghc Chapters/Chapter7/CommandLineCalculator.hs + 1 2 3
+runghc Chapters/Chapter7/CommandLineCalculator.hs - 33 2 1
+runghc Chapters/Chapter7/CommandLineCalculator.hs \* 11 22 33
+-}
