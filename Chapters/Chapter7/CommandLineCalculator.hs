@@ -7,27 +7,23 @@ import Text.Read (readMaybe)
 main :: IO ()
 main = do
     putStr "Result: "
-    calculateArgs
+    calculateArgs >>= print
 
 sumArgs :: IO ()
 sumArgs = do
     args <- getArgs
     print . sum $ mapMaybe parseArg args
 
-calculateArgs :: IO ()
+calculateArgs :: IO Int
 calculateArgs = do
-    args <- getArgs
-    print $ calculateArgs' args
-
-calculateArgs' :: [String] -> Int
-calculateArgs' (command : args) =
+    (command : args) <- getArgs
     let args' = mapMaybe parseArg args
         op = case command of
             "+" -> sum
             "*" -> product
             "-" -> minus
             _ -> const 0
-     in op args'
+     in return $ op args'
 
 minus :: (Num a) => [a] -> a
 minus [x] = x
