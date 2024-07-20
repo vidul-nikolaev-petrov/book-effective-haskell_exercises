@@ -12,12 +12,12 @@ main = do
 sumArgs :: IO ()
 sumArgs = do
     args <- getArgs
-    print . sum $ mapMaybe parseArg args
+    print . sum $ mapMaybe readMaybe args
 
 calculateArgs :: IO Int
 calculateArgs = do
     (command : args) <- getArgs
-    let args' = mapMaybe parseArg args
+    let args' = mapMaybe readMaybe args
         op = case command of
             "+" -> sum
             "*" -> product
@@ -29,9 +29,6 @@ minus :: (Num a) => [a] -> a
 minus [x] = x
 minus [x, y] = x - y
 minus (x : y : xs) = foldl (-) (x - y) xs
-
-parseArg :: String -> Maybe Int
-parseArg = readMaybe
 
 {-
 
