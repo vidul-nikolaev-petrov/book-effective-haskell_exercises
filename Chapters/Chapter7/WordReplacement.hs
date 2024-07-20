@@ -21,9 +21,9 @@ runConfig (path : needle : replacement : _) = do
     return unwords'
 
 replace :: String -> String -> String -> String
-replace x y z
-    | x == z = y
-    | otherwise = z
+replace needle replacement input
+    | needle == input = replacement
+    | otherwise = input
 
 {-
 
