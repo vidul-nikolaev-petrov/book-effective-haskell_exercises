@@ -6,24 +6,24 @@ import Text.Read (readMaybe)
 
 main :: IO ()
 main = do
-    putStr "Result: "
-    calculateArgs >>= print
+  putStr "Result: "
+  calculateArgs >>= print
 
 sumArgs :: IO ()
 sumArgs = do
-    args <- getArgs
-    print . sum $ mapMaybe readMaybe args
+  args <- getArgs
+  print . sum $ mapMaybe readMaybe args
 
 calculateArgs :: IO Int
 calculateArgs = do
-    (command : args) <- getArgs
-    let args' = mapMaybe readMaybe args
-        op = case command of
-            "+" -> sum
-            "*" -> product
-            "-" -> minus
-            _ -> const 0
-     in return $ op args'
+  (command : args) <- getArgs
+  let args' = mapMaybe readMaybe args
+      op = case command of
+        "+" -> sum
+        "*" -> product
+        "-" -> minus
+        _ -> const 0
+   in return $ op args'
 
 minus :: (Num a) => [a] -> a
 minus [x] = x

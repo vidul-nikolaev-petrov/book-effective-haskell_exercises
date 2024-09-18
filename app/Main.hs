@@ -1,25 +1,23 @@
 module Main where
 
-import qualified Chapter1.Index         as C1
-import qualified Chapter2.Index         as C2
-import qualified Chapter5.Index         as C5
-import qualified Chapter6.Index         as C6
-import qualified Chapter7.Index         as C7
-import           System.Posix.Internals (puts)
+import qualified Chapter1.Index as C1
+import qualified Chapter2.Index as C2
+import qualified Chapter5.Index as C5
+import qualified Chapter6.Index as C6
+import qualified Chapter7.Index as C7
+import System.Posix.Internals (puts)
 
 infixr 7 #
+
 (#) :: (Show a) => String -> a -> IO ()
-(#) label a = putStrLn $ (label <> ": " <> show a)
+(#) label a = putStrLn $ label <> ": " <> show a
 
 printChapter :: Int -> IO ()
 printChapter n = putStrLn $ title <> underline
- where
-  title = "\nChapter " <> padding <> "\n"
-  padding =
-    case n < 10 of
-      True  -> " " <> show n
-      False -> show n
-  underline = foldr (:) "" $ replicate 10 '-'
+  where
+    title = "\nChapter " <> padding <> "\n"
+    padding = if n < 10 then " " <> show n else show n
+    underline = foldr (:) "" $ replicate 10 '-'
 
 main :: IO ()
 main = do
@@ -44,7 +42,7 @@ main = do
   printChapter 7
   putStr "type of nested IO actions: " >> C7.typeOfNestedIoActions "abc" >>= id >>= print
   putStr "from nested IO actions: " >> C7.fromNestedIoActions (return . return $ 123) >>= print
-  putStr "from list IO actions: " >> C7.fromListIoActions (map putChar ['a'..'c']) >> putStrLn ""
+  putStr "from list IO actions: " >> C7.fromListIoActions (map putChar ['a' .. 'c']) >> putStrLn ""
   "command line calculator +" # "runghc Chapters/Chapter7/CommandLineCalculator.hs + 1 2 3"
   "command line calculator -" # "runghc Chapters/Chapter7/CommandLineCalculator.hs - 33 2 1"
   "command line calculator *" # "see the comments in Chapters/Chapter7/CommandLineCalculator.hs"

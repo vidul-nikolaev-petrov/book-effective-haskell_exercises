@@ -5,25 +5,25 @@ import System.IO
 
 main :: IO ()
 main = do
-    getConfig >>= runConfig >>= putStr
+  getConfig >>= runConfig >>= putStr
 
 getConfig :: IO [String]
 getConfig = do
-    (path : needle : replacement : _) <- getArgs
-    return [path, needle, replacement]
+  (path : needle : replacement : _) <- getArgs
+  return [path, needle, replacement]
 
 runConfig :: [String] -> IO String
 runConfig (path : needle : replacement : _) = do
-    content <- readFile path
-    let words' = words content
-        result = map (replace needle replacement) words'
-        unwords' = unwords result
-    return unwords'
+  content <- readFile path
+  let words' = words content
+      result = map (replace needle replacement) words'
+      unwords' = unwords result
+  return unwords'
 
 replace :: String -> String -> String -> String
 replace needle replacement input
-    | needle == input = replacement
-    | otherwise = input
+  | needle == input = replacement
+  | otherwise = input
 
 {-
 
