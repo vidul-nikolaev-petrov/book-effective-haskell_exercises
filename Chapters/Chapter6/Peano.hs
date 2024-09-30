@@ -2,7 +2,9 @@
 
 module Chapter6.Peano where
 
-data Peano = Z | S Peano
+data Peano
+    = Z
+    | S Peano
 
 instance Show Peano where
     show :: Peano -> String

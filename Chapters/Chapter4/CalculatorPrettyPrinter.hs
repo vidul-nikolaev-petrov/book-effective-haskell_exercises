@@ -1,6 +1,6 @@
 module CalculatorPrettyPrinter where
 
-import EvalDivisionbyZero (Expr (..), safeEval)
+import EvalDivisionbyZero (Expr(..), safeEval)
 
 prettyPrint' :: Expr -> String
 prettyPrint' expr =
@@ -13,26 +13,19 @@ prettyPrint' expr =
   where
     prettyPrint'' :: String -> Expr -> Expr -> String
     prettyPrint'' op e1 e2 =
-        let result =
-                ( prettyPrint' e1
-                    <> op
-                    <> prettyPrint' e2
-                )
+        let result = (prettyPrint' e1 <> op <> prettyPrint' e2)
          in brackets result
-
     brackets :: String -> String
     brackets s = "( " <> s <> " )"
 
 prettyPrint :: Expr -> String
 prettyPrint expr =
-    let
-        evalString = either . safeEval $ expr
+    let evalString = either . safeEval $ expr
         prettyString = prettyPrint' expr
         -- my naive solution, see the proper one here:
         -- https://shorturl.at/dlCUV
         prettyString' = tail . init $ prettyString
-     in
-        prettyString' <> " = " <> evalString
+     in prettyString' <> " = " <> evalString
   where
     either :: Either String Int -> String
     either (Left x) = x

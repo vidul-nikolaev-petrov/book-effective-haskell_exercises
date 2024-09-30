@@ -6,30 +6,30 @@ import Text.Read (readMaybe)
 
 main :: IO ()
 main = do
-  putStr "Result: "
-  calculateArgs >>= print
+    putStr "Result: "
+    calculateArgs >>= print
 
 sumArgs :: IO ()
 sumArgs = do
-  args <- getArgs
-  print . sum $ mapMaybe readMaybe args
+    args <- getArgs
+    print . sum $ mapMaybe readMaybe args
 
 calculateArgs :: IO Int
 calculateArgs = do
-  (command : args) <- getArgs
-  let args' = mapMaybe readMaybe args
-      op = case command of
-        "+" -> sum
-        "*" -> product
-        "-" -> minus
-        _ -> const 0
-   in return $ op args'
+    (command:args) <- getArgs
+    let args' = mapMaybe readMaybe args
+        op =
+            case command of
+                "+" -> sum
+                "*" -> product
+                "-" -> minus
+                _ -> const 0
+     in return $ op args'
 
 minus :: (Num a) => [a] -> a
 minus [x] = x
 minus [x, y] = x - y
-minus (x : y : xs) = foldl (-) (x - y) xs
-
+minus (x:y:xs) = foldl (-) (x - y) xs
 {-
 
 runghc Chapters/Chapter7/CommandLineCalculator.hs + 1 2 3

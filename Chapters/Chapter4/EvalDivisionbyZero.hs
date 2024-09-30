@@ -18,12 +18,10 @@ safeEval expr =
   where
     right :: (Int -> Int -> Int) -> Int -> Int -> Either String Int
     right f a b = Right $ f a b
-
     eitherDiv :: Int -> Int -> Either String Int
     eitherDiv a b
         | a == 0 || b == 0 = Left "Error: division by zero"
         | otherwise = Right $ div a b
-
     eval' :: (Int -> Int -> Either String Int) -> Expr -> Expr -> Either String Int
     eval' operator e1 e2 =
         case safeEval e1 of
@@ -31,8 +29,7 @@ safeEval expr =
             Right a ->
                 case safeEval e2 of
                     Left err -> Left err
-                    Right b ->
-                        operator a b
+                    Right b -> operator a b
 
 main = do
     print $ safeEval $ (Lit 21 `Mul` Lit 9) `Add` ((Lit 12 `Add` Lit 4) `Div` Lit 8)

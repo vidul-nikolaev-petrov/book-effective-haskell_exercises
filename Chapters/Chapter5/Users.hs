@@ -1,13 +1,10 @@
-module Chapter5.Users (
-    lookupUser,
-    lookupUserBool,
-) where
+module Chapter5.Users
+    ( lookupUser
+    , lookupUserBool
+    ) where
 
-import Chapter5.Auth (
-    Authenticated,
-    Unauthenticated,
- )
-import Chapter5.User (User (..))
+import Chapter5.Auth (Authenticated, Unauthenticated)
+import Chapter5.User (User(..))
 import Data.List (find)
 
 users :: [User a]
@@ -29,8 +26,7 @@ users = [george, porter]
             }
 
 lookupUser :: String -> Maybe (User Unauthenticated)
-lookupUser name =
-    find (\user -> userName user == name) users
+lookupUser name = find (\user -> userName user == name) users
 
 lookupUserBool :: String -> Bool
 lookupUserBool name =

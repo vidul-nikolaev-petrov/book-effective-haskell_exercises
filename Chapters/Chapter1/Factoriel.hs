@@ -1,5 +1,5 @@
 module Chapter1.Factoriel where
 
 factoriel n
-  | n == 1 = 1
-  | otherwise = n * factoriel (n - 1)
+    | n == 1 = 1
+    | otherwise = n * factoriel (n - 1)

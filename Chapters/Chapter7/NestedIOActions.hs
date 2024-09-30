@@ -5,23 +5,16 @@ typeOfNestedIoActions = return . return
 
 -- print the string:
 -- typeOfNestedIoActions "abc" >>= id >>= print
-
 fromNestedIoActions :: IO (IO a) -> IO a
 fromNestedIoActions a = a >>= id
 
 -- print the value of `a`:
 -- fromNestedIoActions (return . return $ 123) >>= print
-
 toListIoActions :: [a] -> [IO a]
-toListIoActions (x : xs) = return x : toListIoActions xs
+toListIoActions (x:xs) = return x : toListIoActions xs
 
 fromListIoActions :: [IO a] -> IO [a]
 fromListIoActions = foldr combine (return [])
   where
-    combine io acc =
-      io
-        >>= \x ->
-          acc
-            >>= \xs -> return (x : xs)
-
+    combine io acc = io >>= \x -> acc >>= \xs -> return (x : xs)
 -- fromListIoActions (map putChar ['a'..'c']) >> putStrLn ""

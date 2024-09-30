@@ -1,75 +1,49 @@
 module PlantingTrees where
 
-data BinaryTree a = Leaf | Branch (BinaryTree a) a (BinaryTree a)
+data BinaryTree a
+    = Leaf
+    | Branch (BinaryTree a) a (BinaryTree a)
 
 stringBinaryTree :: BinaryTree String
 stringBinaryTree =
     Branch
-        ( Branch
-            ( Branch
-                (Branch Leaf "Branch-8" Leaf)
-                "Branch-4"
-                (Branch Leaf "Branch-9" Leaf)
-            )
-            "Branch-2"
-            ( Branch
-                (Branch Leaf "Branch-10" Leaf)
-                "Branch-5"
-                (Branch Leaf "Branch-11" Leaf)
-            )
-        )
+        (Branch
+             (Branch
+                  (Branch Leaf "Branch-8" Leaf)
+                  "Branch-4"
+                  (Branch Leaf "Branch-9" Leaf))
+             "Branch-2"
+             (Branch
+                  (Branch Leaf "Branch-10" Leaf)
+                  "Branch-5"
+                  (Branch Leaf "Branch-11" Leaf)))
         "Branch-1"
-        ( Branch
-            (Branch Leaf "Branch-6" Leaf)
-            "Branch-3"
-            ( Branch
-                (Branch Leaf "Branch-10" Leaf)
-                "Branch-7"
-                ( Branch
-                    (Branch Leaf "Branch-12" Leaf)
-                    "Branch-11"
-                    (Branch Leaf "Branch-13" Leaf)
-                )
-            )
-        )
+        (Branch
+             (Branch Leaf "Branch-6" Leaf)
+             "Branch-3"
+             (Branch
+                  (Branch Leaf "Branch-10" Leaf)
+                  "Branch-7"
+                  (Branch
+                       (Branch Leaf "Branch-12" Leaf)
+                       "Branch-11"
+                       (Branch Leaf "Branch-13" Leaf))))
 
 intBinaryTree :: BinaryTree Int
 intBinaryTree =
     Branch
-        ( Branch
-            ( Branch
-                Leaf
-                2
-                Leaf
-            )
-            3
-            ( Branch
-                Leaf
-                4
-                Leaf
-            )
-        )
+        (Branch (Branch Leaf 2 Leaf) 3 (Branch Leaf 4 Leaf))
         5
-        ( Branch
-            Leaf
-            7
-            ( Branch
-                Leaf
-                8
-                Leaf
-            )
-        )
+        (Branch Leaf 7 (Branch Leaf 8 Leaf))
 
 -- Turn a binary tree of strings into a pretty-printed string
 showStringTree :: BinaryTree String -> String
-showStringTree (Branch left a right) =
-    showStringTree' (Branch left a right) 0
+showStringTree (Branch left a right) = showStringTree' (Branch left a right) 0
   where
     showStringTree' :: BinaryTree String -> Int -> String
     showStringTree' Leaf _ = "Leaf"
     showStringTree' (Branch left a right) ident =
         prettyPrint a left right (succ $ succ ident)
-
     prettyPrint :: String -> BinaryTree String -> BinaryTree String -> Int -> String
     prettyPrint branchValue lb rb ident =
         branchValue
@@ -78,14 +52,13 @@ showStringTree (Branch left a right) =
             <> "Left: "
             <> showStringTree' lb ident
             <> case rb of
-                Leaf -> repeat' (ident - ident) <> ", "
-                _ -> repeat' ident
+                   Leaf -> repeat' (ident - ident) <> ", "
+                   _ -> repeat' ident
             <> "Right: "
             <> showStringTree' rb ident
             <> case rb of
-                Leaf -> "\n"
-                _ -> ""
-
+                   Leaf -> "\n"
+                   _ -> ""
     repeat' :: Int -> String
     repeat' = flip replicate ' '
 

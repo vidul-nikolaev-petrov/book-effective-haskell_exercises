@@ -2,12 +2,13 @@
 
 module Chapter6.Nullable where
 
-import Text.Read (Lexeme (String))
 import Prelude hiding (null)
+import Text.Read (Lexeme(String))
 
-class (Eq a) => Nullable a where
+class (Eq a) =>
+      Nullable a
+    where
     null :: a
-
     isNull :: a -> Bool
     isNull a = a == null
 
@@ -28,7 +29,6 @@ main = do
     let nothing = Nothing :: Maybe Int
     let nullList = [] :: [Int]
     let nullTuple = (Nothing, []) :: (Maybe Int, [Int])
-
     print $ isNull (Just 1)
     print $ isNull nothing
     print $ isNull ("", Just 1)

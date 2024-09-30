@@ -6,7 +6,7 @@ module Chapter2.ZipWith where
 zipWith' :: (t1 -> t2 -> a) -> [t1] -> [t2] -> [a]
 zipWith' _ [] _ = []
 zipWith' _ _ [] = []
-zipWith' f (a : as) (b : bs) = f a b : zipWith' f as bs
+zipWith' f (a:as) (b:bs) = f a b : zipWith' f as bs
 
 -- with comprehensions
 zipWithC' :: (t1 -> t2 -> a) -> [t1] -> [t2] -> [a]
