@@ -9,7 +9,7 @@
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.detectIndentation": true,
   "[haskell]": {
     "editor.defaultFormatter": "monofon.hindent-format"
@@ -17,6 +17,7 @@
   "terminal.integrated.shellIntegration.enabled": true,
   "terminal.integrated.defaultProfile.osx": "bash",
   "terminal.external.osxExec": "Terminal.app",
+  "terminal.fontSize": 15,
   "terminal.integrated.profiles.osx": {
     "bash": {
       "path": "/bin/bash",

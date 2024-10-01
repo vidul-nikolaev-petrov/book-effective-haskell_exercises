@@ -29,13 +29,9 @@ instance Functor' SortedList where
 
 main :: IO ()
 main = do
-    {-
-        The following works.
-    -}
+    -- The following works.
     print $ fmap' (+ 2) (Cons 3 Empty)
-    {-
-        The following won't work because `insertSorted`
-        expects `a -> SortedList a` and returns `SortedList a`
-        (not `b`), while the Functor's function's type is `a -> b`.
-    -}
+    -- The following won't work because `insertSorted`
+    -- expects `a -> SortedList a` and returns `SortedList a`
+    -- (not `b`), while the Functor's function's type is `a -> b`.
     -- print $ fmap' (insertSorted 2) (Cons 3 Empty)
