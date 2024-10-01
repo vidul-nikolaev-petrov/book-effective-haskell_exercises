@@ -15,6 +15,8 @@ class Monad m =>
     where
     pure :: a -> m a
     pure = return
+    -- Essentially the same as:
+    -- fs <*> xs = [f x | f <- fs, x <- xs]
     (<*>) :: m (a -> b) -> m a -> m b
     mf <*> ma = mf >>= \f -> ma >>= \a -> return (f a)
 
