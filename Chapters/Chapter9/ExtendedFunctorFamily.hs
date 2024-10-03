@@ -3,7 +3,7 @@
 module Chapter9.ExtendedFunctorFamily where
 
 import Data.Bifunctor (Bifunctor, bimap, first, second)
-import Data.Functor.Contravariant (Contravariant)
+import Data.Functor.Contravariant (Contravariant(contramap))
 
 data Either' a b
     = Left' a
@@ -19,11 +19,36 @@ instance Bifunctor Either' where
     second :: (b -> c) -> Either' a b -> Either' a c
     second = bimap id
 
+newtype F b a = F
+    { runF :: a -> b
+    }
+
+instance Contravariant (F b) where
+    contramap :: (a' -> a) -> F b a -> F b a'
+    contramap f (F g) = F (g . f)
+
+greaterThanTen :: Int -> Bool
+greaterThanTen n = n > 10
+
+greaterThanTenF :: F Bool Int
+greaterThanTenF = F greaterThanTen
+
+stringToInt :: String -> Int
+stringToInt = read
+
+lengthGreaterThanTenF :: F Bool String
+lengthGreaterThanTenF = contramap stringToInt greaterThanTenF
+
 main :: IO ()
 main = do
     let first' = first (const "`first` means failure") (Left' 1) :: Either' String Int
     let second' = second (const "`second` means success") (Right' 0) :: Either' Int String
+    let contramap' = runF lengthGreaterThanTenF "10"
+    let contramap'' = runF lengthGreaterThanTenF "11"
     print $ bimap (const "Failure") (const "Success") (Right' 0)
     print $ bimap (const "Failure") (const "Success") (Left' 1)
     print first'
     print second'
+    print $ runF lengthGreaterThanTenF "11"
+    putStrLn $ "contramap: 10 > 10: " <> show contramap'
+    putStrLn $ "contramap: 10 > 11: " <> show contramap''
